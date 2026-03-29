@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: leaddrive_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Neo@2003
+      MYSQL_DATABASE: leaddrive_crm
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: leaddrive_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
